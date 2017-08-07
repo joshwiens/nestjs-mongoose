@@ -1,0 +1,34 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/nest-typescript-starter
+    docker:
+      - image: easymetrics/circleci-gcp-node6
+    branches:
+      only:
+        - master
+        - develop
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Unit Tests
+          command: npm run test:coverage
+      - run:
+          name: Code Linting
+          command: npm run lint
+      - run:
+          name: Security Scan
+          command: npm run security
+      - run:
+          name: Report Code Coverage
+          command: npm run report-codeclimate
