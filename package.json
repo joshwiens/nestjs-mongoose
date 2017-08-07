@@ -1,0 +1,57 @@
+{
+  "name": "nest-typescript-starter",
+  "version": "0.0.1",
+  "description": "NestJS API starter",
+  "author": "Joshua Wiens <d3viant0ne>",
+  "license": "Apache-2.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "chalk": "^2.1.0",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "mongoose": "^4.11.5",
+    "morgan": "^1.8.2",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.4.2",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.16.4",
+    "@types/chalk": "^0.4.31",
+    "@types/cors": "^2.8.1",
+    "@types/dotenv": "^4.0.0",
+    "@types/jest": "^20.0.2",
+    "@types/mongoose": "^4.7.19",
+    "@types/morgan": "^1.7.32",
+    "@types/node": "^8.0.19",
+    "@types/winston": "^2.3.4",
+    "codeclimate-test-reporter": "^0.5.0",
+    "cross-env": "^5.0.4",
+    "jest": "^20.0.4",
+    "nodemon": "^1.11.0",
+    "nsp": "^2.7.0",
+    "rimraf": "^2.6.1",
+    "standard-version": "^4.2.0",
+    "ts-jest": "^20.0.10",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.5.0",
+    "typescript": "^2.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d3viant0ne/nest-typescript-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/d3viant0ne/nest-typescript-starter/issues"
+  },
+  "homepage": "https://github.com/d3viant0ne/nest-typescript-starter#readme",
+  "keywords": [
+    "nestjs",
+    "typescript",
+    "jest"
+  ]
+}
