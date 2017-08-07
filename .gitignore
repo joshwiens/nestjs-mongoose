@@ -34,6 +34,7 @@ typings/
 /compiled/
 .awcache/
 dll/
+.ssl/certs/*
 
 # Logs
 logs
