@@ -1,4 +1,4 @@
-export class EnvironmentComponent {
+export class Environment {
   public static getEnv(): string {
     return process.env.NODE_ENV || 'development';
   }

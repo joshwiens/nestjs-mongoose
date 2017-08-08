@@ -1,6 +1,6 @@
 import * as winston from 'winston';
 
-import { EnvironmentComponent } from '../../config/environment.component';
+import { Environment } from '../../config/environment';
 
 export class WinstonComponent {
   private logger: winston.LoggerInstance;
@@ -10,10 +10,10 @@ export class WinstonComponent {
       transports: [
         new winston.transports.Console({
           level: process.env.LOG_LEVEL,
-          timestamp: EnvironmentComponent.isProd(),
-          handleExceptions: EnvironmentComponent.isProd(),
-          json: EnvironmentComponent.isProd(),
-          colorize: !EnvironmentComponent.isProd(),
+          timestamp: Environment.isProd(),
+          handleExceptions: Environment.isProd(),
+          json: Environment.isProd(),
+          colorize: !Environment.isProd(),
         }),
       ],
       exitOnError: false,
