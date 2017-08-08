@@ -20,9 +20,7 @@
     "report-codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
     "lint": "tslint --type-check --project tsconfig.json -c ./tslint.json 'src/**/*.ts'  --exclude 'src/**/*.d.ts'",
     "security": "nsp check",
-    "transpile": "tsc",
-    "ts-node": "ts-node",
-    "ts-node:fast": "ts-node -F"
+    "transpile": "tsc"
   },
   "dependencies": {
     "@nestjs/common": "^3.0.0",
