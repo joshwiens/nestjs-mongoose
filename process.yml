@@ -1,0 +1,14 @@
+
+apps:
+  - script: ./nest-server/server.js
+    name: 'nest-server'
+    instances: 1
+    exec_mode: cluster
+    out_file: '/tmp/nestServer.log'
+    log_date_format: 'MM/DD/YYYY HH:mm:ss'
+    max_restarts: 5
+    node_args: '--max-old-space-size=3072'
+    env:
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
