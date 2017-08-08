@@ -25,12 +25,18 @@
     "ts-node:fast": "ts-node -F"
   },
   "dependencies": {
+    "@nestjs/common": "^3.0.0",
+    "@nestjs/core": "^3.0.1",
+    "@nestjs/microservices": "^3.0.1",
+    "@nestjs/testing": "^3.0.0",
+    "@nestjs/websockets": "^3.0.0",
     "body-parser": "^1.17.2",
     "chalk": "^2.1.0",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "mongoose": "^4.11.5",
     "morgan": "^1.8.2",
+    "redis": "^2.7.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.2",
     "winston": "^2.3.1"
@@ -67,6 +73,7 @@
   "homepage": "https://github.com/d3viant0ne/nest-typescript-starter#readme",
   "keywords": [
     "nestjs",
+    "nest",
     "typescript",
     "jest"
   ]
