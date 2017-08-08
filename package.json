@@ -4,7 +4,7 @@
   "description": "NestJS API starter",
   "author": "Joshua Wiens <d3viant0ne>",
   "license": "Apache-2.0",
-  "main": "server.js",
+  "main": "nest-server/server.js",
   "scripts": {
     "start": "npm run serve:dev",
     "build": "npm run lint && npm run clean:dist && npm run transpile && npm run copy:assets",
