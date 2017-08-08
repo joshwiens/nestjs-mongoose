@@ -9,38 +9,38 @@ export class WinstonComponent {
     this.logger = new winston.Logger({
       transports: [
         new winston.transports.Console({
-          level: process.env.LOG_LEVEL,
-          timestamp: Environment.isProd(),
+          colorize: !Environment.isProd(),
           handleExceptions: Environment.isProd(),
           json: Environment.isProd(),
-          colorize: !Environment.isProd(),
+          level: process.env.LOG_LEVEL,
+          timestamp: Environment.isProd(),
         }),
       ],
       exitOnError: false,
     });
   }
 
-  public debug(message: string, ...args: any[]): void {
-    this.logger.debug(`${this.formatScope()} ${message}`, this.parseArgs(args));
+  public info(logMessage: string, ...args: any[]): void {
+    this.logger.info(` ${this.setScope()} ${logMessage}`, this.setArgs(args));
   }
 
-  public info(message: string, ...args: any[]): void {
-    this.logger.info(` ${this.formatScope()} ${message}`, this.parseArgs(args));
+  public warn(logMessage: string, ...args: any[]): void {
+    this.logger.warn(` ${this.setScope()} ${logMessage}`, this.setArgs(args));
   }
 
-  public warn(message: string, ...args: any[]): void {
-    this.logger.warn(` ${this.formatScope()} ${message}`, this.parseArgs(args));
+  public error(logMessage: string, ...args: any[]): void {
+    this.logger.error(`${this.setScope()} ${logMessage}`, this.setArgs(args));
   }
 
-  public error(message: string, ...args: any[]): void {
-    this.logger.error(`${this.formatScope()} ${message}`, this.parseArgs(args));
+  public debug(logMessage: string, ...args: any[]): void {
+    this.logger.debug(`${this.setScope()} ${logMessage}`, this.setArgs(args));
   }
 
-  private parseArgs(args: any[]): any {
+  private setArgs(args: any[]): any {
     return args && args[0] && args[0].length > 0 ? args : '';
   }
 
-  private formatScope(): string {
+  private setScope(): string {
     return `[${this.scope}] => `;
   }
 }
