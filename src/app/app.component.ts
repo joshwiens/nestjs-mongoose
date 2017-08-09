@@ -15,7 +15,7 @@ export interface Configuration {
 
 @Component()
 export class AppComponent {
-  private readonly logger = new Logger('AppComponent');
+  private readonly logger = new Logger(AppComponent.name);
   private configurations: Configuration[] = [];
   private express: express.Application = express();
   private appBootstrap = new AppBootstrap();
