@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 
 import { Environment } from './config/environment.component';
-import { Mongoose } from './mongoose/mongoose.component';
+import { MongooseService } from './mongoose/mongoose.service';
 import { MongooseConfig } from './mongoose/mongoose.confg';
 
 @Module({
   modules: [],
   controllers: [],
-  components: [Environment, MongooseConfig, Mongoose],
-  exports: [Environment, MongooseConfig, Mongoose],
+  components: [Environment, MongooseConfig, MongooseService],
+  exports: [Environment, MongooseConfig, MongooseService],
 })
 export class CoreModule {}

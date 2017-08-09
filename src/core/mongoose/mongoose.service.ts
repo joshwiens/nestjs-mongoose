@@ -6,8 +6,8 @@ import * as mongoose from 'mongoose';
 export type MongooseClient = mongoose.Mongoose;
 
 @Component()
-export class Mongoose {
-  private readonly logger = new Logger(Mongoose.name);
+export class MongooseService {
+  private readonly logger = new Logger(MongooseService.name);
 
   public getMongooseConnection(connectionString) {
     return new Promise<MongooseClient>((resolve, reject) => {

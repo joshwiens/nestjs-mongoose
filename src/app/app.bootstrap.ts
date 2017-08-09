@@ -4,7 +4,7 @@ import * as express from 'express';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { Mongoose } from './../core/mongoose/mongoose.component';
+import { MongooseService } from './../core/mongoose/mongoose.service';
 import { MongooseConfig } from './../core/mongoose/mongoose.confg';
 
 @Component()
@@ -20,10 +20,9 @@ export class AppBootstrap {
   }
 
   public async setupDataSources() {
-    let mongooseClient;
     const mongooseConfig: MongooseConfig = new MongooseConfig();
-    const mongooseInstance: Mongoose = new Mongoose();
-    return mongooseClient = await mongooseInstance.getMongooseConnection(mongooseConfig.configure());
+    const mongooseInstance: MongooseService = new MongooseService();
+    return await mongooseInstance.getMongooseConnection(mongooseConfig.configure());
   }
 
   public normalizedPort(port: string): number | string {
