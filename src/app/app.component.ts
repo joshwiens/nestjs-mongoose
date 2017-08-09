@@ -16,6 +16,7 @@ export class AppComponent {
   private readonly logger = new Logger(AppComponent.name);
   private configurations: Configuration[] = [];
   private express: express.Application = express();
+  private mongooseClient;
   private appBootstrap = new AppBootstrap();
 
   constructor() {
@@ -34,6 +35,7 @@ export class AppComponent {
   }
 
   public bootstrap() {
+    this.mongooseClient = this.appBootstrap.setupDataSources();
     const appConfig = new AppConfiguration();
     this.logger.log('Configuring Express Options');
     appConfig.configure(this);
