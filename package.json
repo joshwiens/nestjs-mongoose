@@ -7,7 +7,7 @@
   "main": "src/server.ts",
   "scripts": {
     "start": "npm run serve:dev",
-    "build": "npm run lint && npm run clean:dist && npm run transpile && npm run copy:assets",
+    "build": "npm run lint && npm run clean:dist && npm run transpile",
     "clean": "npm run clean:dist",
     "clean:all": "npm run clean:coverage && npm run clean:dist",
     "clean:coverage": "rimraf './coverage'",
