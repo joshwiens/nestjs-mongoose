@@ -1,7 +1,13 @@
+import * as packageInfo from '../../../package.json';
+
 export class Environment {
   public static getEnv(): string {
     return process.env.NODE_ENV || 'development';
   }
+
+public static getPackageInfo(): any {
+  return packageInfo;
+}
 
   public static isTest(): boolean {
     return this.getEnv() === 'test';
