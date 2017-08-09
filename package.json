@@ -14,7 +14,7 @@
     "clean:dist": "rimraf './dist'",
     "serve:dev": "nodemon --watch src --watch .env",
     "serve:dist": "node dist/server.js",
-    "test": "cross-env NODE_ENV=test jest --testPathPattern=unit",
+    "test": "cross-env NODE_ENV=test jest",
     "test:verbose": "npm run test -- --verbose",
     "test:coverage": "npm run clean:coverage && npm run test -- --coverage",
     "report-codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
@@ -60,6 +60,19 @@
     "ts-node": "^3.3.0",
     "tslint": "^5.5.0",
     "typescript": "^2.4.2"
+  },
+  "jest": {
+    "transform": {
+      ".(ts)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/test/.*|\\.(test|spec))\\.(ts|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ],
+    "testEnvironment": "node",
+    "setupTestFrameworkScriptFile": "./setupJest.ts"
   },
   "repository": {
     "type": "git",

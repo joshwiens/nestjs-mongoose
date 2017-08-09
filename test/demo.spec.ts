@@ -1,8 +1,8 @@
 import { HttpException } from '@nestjs/core';
 import { Test } from '@nestjs/testing';
 
-import { DemoController } from './demo.controller';
-import { DemoService } from './demo.service';
+import { DemoController } from '../src/app/demo/demo.controller';
+import { DemoService } from '../src/app/demo/demo.service';
 
 describe('DemoModule', () => {
   describe('DemoService', () => {
