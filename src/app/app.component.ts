@@ -1,14 +1,19 @@
-import { AppBootstrap } from './app.bootstrap';
-import { Logger } from '@nestjs/common'
+import { Logger } from '@nestjs/common';
+import { Component } from '@nestjs/common';
+
 import * as dotenv from 'dotenv';
 import * as express from 'express';
 
+import { AppBootstrap } from './app.bootstrap';
 import { AppConfiguration } from './app.config';
+
+
 
 export interface Configuration {
   configure(app: AppComponent): void;
 }
 
+@Component()
 export class AppComponent {
   private readonly logger = new Logger('AppComponent');
   private configurations: Configuration[] = [];

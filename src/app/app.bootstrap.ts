@@ -1,7 +1,9 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import * as express from 'express';
+import { Component } from '@nestjs/common';
 
+@Component()
 export class AppBootstrap {
   public expressAppDefinition(app: express.Application): express.Application {
     app.set('prefix', process.env.APP_URL_PREFIX);
