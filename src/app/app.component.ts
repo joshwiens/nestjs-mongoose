@@ -7,8 +7,6 @@ import * as express from 'express';
 import { AppBootstrap } from './app.bootstrap';
 import { AppConfiguration } from './app.config';
 
-
-
 export interface Configuration {
   configure(app: AppComponent): void;
 }
