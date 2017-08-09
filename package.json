@@ -4,7 +4,7 @@
   "description": "NestJS API starter",
   "author": "Joshua Wiens <d3viant0ne>",
   "license": "Apache-2.0",
-  "main": "nest-server/server.js",
+  "main": "src/server.ts",
   "scripts": {
     "start": "npm run serve:dev",
     "build": "npm run lint && npm run clean:dist && npm run transpile && npm run copy:assets",
@@ -35,11 +35,9 @@
     "dotenv": "^4.0.0",
     "helmet": "^3.8.1",
     "mongoose": "^4.11.5",
-    "morgan": "^1.8.2",
     "redis": "^2.7.1",
     "reflect-metadata": "^0.1.10",
-    "rxjs": "^5.4.2",
-    "winston": "^2.3.1"
+    "rxjs": "^5.4.2"
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.4",
@@ -50,9 +48,7 @@
     "@types/helmet": "0.0.36",
     "@types/jest": "^20.0.2",
     "@types/mongoose": "^4.7.19",
-    "@types/morgan": "^1.7.32",
     "@types/node": "^8.0.19",
-    "@types/winston": "^2.3.4",
     "codeclimate-test-reporter": "^0.5.0",
     "cross-env": "^5.0.4",
     "jest": "^20.0.4",
