@@ -14,32 +14,19 @@ export interface Configuration {
 @Component()
 export class AppComponent {
   private readonly logger = new Logger(AppComponent.name);
-  private configurations: Configuration[] = [];
   private express: express.Application = express();
-  private mongooseClient;
   private appBootstrap = new AppBootstrap();
+  private appConfig = new AppConfiguration();
 
   constructor() {
     dotenv.config();
-    this.appBootstrap.expressAppDefinition(this.express);
-    const appConfig = new AppConfiguration();
-    appConfig.configure(this);
-  }
-
-  get Express(): express.Application {
-    return this.express;
-  }
-
-  public configure(configurations: Configuration): void {
-    this.configurations.push(configurations);
   }
 
   public bootstrap() {
-    this.mongooseClient = this.appBootstrap.setupDataSources();
-    const appConfig = new AppConfiguration();
+    this.appBootstrap.setupDataSources();
     this.logger.log('Configuring Express Options');
-    appConfig.configure(this);
-    this.configurations.forEach(conf => conf.configure(this));
+    this.appBootstrap.expressAppDefinition(this.express);
+    this.appConfig.configure(this.express);
     return this.express;
   }
 }

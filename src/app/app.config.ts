@@ -3,14 +3,15 @@ import { Component } from '@nestjs/common';
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as cors from 'cors';
+import * as express from 'express';
 import * as helmet from 'helmet';
 
-import { AppComponent } from './app.component';
+// import { AppComponent } from './app.component';
 
 @Component()
 export class AppConfiguration {
-  public configure(app: AppComponent) {
-    app.Express
+  public configure(express: express.Application) {
+    express
       .options('*', cors()) // TODO: pull this from .env
       .use(cors())
       .use(helmet())
@@ -28,6 +29,6 @@ export class AppConfiguration {
           extended: true,
         }),
       );
-      return app.Express;
+      return express;
   }
 }
