@@ -4,7 +4,7 @@ import * as https from 'https';
 
 import { AppComponent } from './app/app.component';
 import { AppModule } from './app/app.module';
-import { Environment } from './core/config/environment';
+import { Environment } from './core/config/environment.component';
 
 const logger = new Logger('HttpsServer');
 const appInstance = new AppComponent();
