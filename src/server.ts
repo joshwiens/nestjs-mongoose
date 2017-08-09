@@ -1,17 +1,35 @@
 import { NestFactory } from '@nestjs/core';
-import * as bodyParser from 'body-parser';
-import * as cors from 'cors';
-import * as express from 'express';
+import { Logger } from '@nestjs/common'
 import * as https from 'https';
 
+import { AppComponent } from './app/app.component';
 import { AppModule } from './app/app.module';
+import { Environment } from './core/config/environment';
 
-const initOptions = {}; // Define this object in config.module
-const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
-const instance = https.createServer(initOptions, app).listen(process.env.API_PORT); // get from .env
+const logger = new Logger('HttpsServer');
+const appInstance = new AppComponent();
+const app = appInstance.bootstrap();
 
-const server = NestFactory.create(AppModule, instance);
-server.setGlobalPrefix(process.env.API_PREFIX); // get prefix from .env
+const server = NestFactory.create(AppModule, app);
+server.setGlobalPrefix(app.get('prefix'));
+server.init();
 
+const options = {
+  key: app.get('key'),
+  cert: app.get('cert'),
+  ca: app.get('ca'),
+};
+
+const httpsInstance = https.createServer(options, app).listen(app.get('port'));
+httpsInstance.on('listening', () => {
+  logger.log('');
+  logger.log('');
+  logger.log(`Nest Server ready and running on ${app.get('host')}:${app.get('port')}${app.get('prefix')}`);
+  logger.log(``);
+  logger.log(`-------------------------------------------------------`);
+  logger.log(`Environment  : ${Environment.getEnv()}`);
+  logger.log(`Version      : ${Environment.getPackageInfo().version}`);
+  logger.log(``);
+  logger.log(`-------------------------------------------------------`);
+  logger.log(``);
+});

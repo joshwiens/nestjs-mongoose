@@ -1,16 +1,18 @@
+import { AppConfiguration } from './app.config';
+import { AppBootstrap } from './app.bootstrap';
+import { AppComponent } from './app.component';
+import { HaiModule } from './hai/hai.module';
 import { Module } from '@nestjs/common';
 
 import { CoreModule } from '../core/core.module';
 
-import { AppComponent } from './app.component';
-
-
 @Module({
   modules: [
-    CoreModule
+    CoreModule,
+    HaiModule
   ],
   controllers: [],
-  components: [AppComponent],
-  exports: [],
+  components: [AppComponent, AppBootstrap, AppConfiguration],
+  exports: [AppComponent, AppBootstrap, AppConfiguration],
 })
 export class AppModule {}

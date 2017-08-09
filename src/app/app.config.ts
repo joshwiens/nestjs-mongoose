@@ -2,15 +2,11 @@ import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as cors from 'cors';
 import * as helmet from 'helmet';
-import * as morgan from 'morgan';
 
-import { LoggerComponent } from '../core/logger/logger.component';
-import { AppComponent, Configurable } from './app.component';
+import { AppComponent } from './app.component';
 
-export class AppConfig implements Configurable {
-  public configure(app: AppComponent): void {
-    const logger = new LoggerComponent();
-
+export class AppConfiguration {
+  public configure(app: AppComponent) {
     app.Express
       .options('*', cors()) // TODO: pull this from .env
       .use(cors())
@@ -28,13 +24,7 @@ export class AppConfig implements Configurable {
         bodyParser.urlencoded({
           extended: true,
         }),
-      )
-      .use(
-        morgan('dev', {
-          stream: {
-            write: logger.info.bind(logger),
-          },
-        }),
       );
+      return app.Express;
   }
 }

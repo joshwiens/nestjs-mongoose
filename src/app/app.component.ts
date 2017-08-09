@@ -1,38 +1,40 @@
+import { AppBootstrap } from './app.bootstrap';
+import { Logger } from '@nestjs/common'
 import * as dotenv from 'dotenv';
 import * as express from 'express';
 
-import { LoggerComponent } from './../core/logger/logger.component';
-import { LoggerConfig } from '../core/logger/logger.config';
+import { AppConfiguration } from './app.config';
 
-export interface Configurable {
+export interface Configuration {
   configure(app: AppComponent): void;
 }
 
 export class AppComponent {
-  private configurations: Configurable[] = [];
+  private readonly logger = new Logger('AppComponent');
+  private configurations: Configuration[] = [];
   private express: express.Application = express();
-  private log: LoggerComponent = new LoggerComponent(__filename);
+  private appBootstrap = new AppBootstrap();
 
   constructor() {
     dotenv.config();
-    const loggerConfig = new LoggerConfig();
-    loggerConfig.configure();
-    this.log.info('Bootstrapping Express Instance...');
+    this.appBootstrap.expressAppDefinition(this.express);
+    const appConfig = new AppConfiguration();
+    appConfig.configure(this);
   }
 
   get Express(): express.Application {
     return this.express;
   }
 
-  public Logger(scope: string): LoggerComponent {
-    return new LoggerComponent(scope || __filename);
-  }
-
-  public configure(configurations: Configurable): void {
+  public configure(configurations: Configuration): void {
     this.configurations.push(configurations);
   }
 
-  public async bootstrap(): Promise<void> {
-
+  public bootstrap() {
+    const appConfig = new AppConfiguration();
+    this.logger.log('Configuring Express Options');
+    appConfig.configure(this);
+    this.configurations.forEach(conf => conf.configure(this));
+    return this.express;
   }
 }
