@@ -1,6 +1,5 @@
-# This is a private Google Container Registry, replace with node:latest for public use.
-FROM gcr.io/jobtrak-155518/docker-node8-lts:latest
-MAINTAINER EasyMetrics <joshuaw@easymetrics.com>
+FROM d3vaint0ne/docker-node8-lts:latest
+MAINTAINER d3viant0ne <wiens.joshua@gmail.com>
 
 ENV APP_ENV production
 
