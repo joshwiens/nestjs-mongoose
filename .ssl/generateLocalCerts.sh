@@ -43,6 +43,12 @@ openssl x509 \
   -out certs/server/cert.pem \
   -days 500
 
+# Create a public key, for funzies
+# see https://gist.github.com/coolaj86/f6f36efce2821dfb046d
+openssl rsa \
+  -in certs/server/privkey.pem \
+  -pubout -out certs/client/pubkey.pem
+
 # Put things in their proper place
 rsync -a certs/ca/my-root-ca.crt.pem certs/server/chain.pem
 rsync -a certs/ca/my-root-ca.crt.pem certs/client/chain.pem
