@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 
-import { CoreModule } from '../core/core.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { AppBootstrap } from './app.bootstrap';
 import { AppComponent } from './app.component';
@@ -10,7 +10,7 @@ import { DemoModule } from './demo/demo.module';
 
 @Module({
   modules: [
-    CoreModule,
+    SharedModule,
     DemoModule
   ],
   controllers: [],

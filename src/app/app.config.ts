@@ -6,13 +6,11 @@ import * as cors from 'cors';
 import * as express from 'express';
 import * as helmet from 'helmet';
 
-// import { AppComponent } from './app.component';
-
 @Component()
 export class AppConfiguration {
   public configure(express: express.Application) {
     express
-      .options('*', cors()) // TODO: pull this from .env
+      .options('*', cors())
       .use(cors())
       .use(helmet())
       .use(helmet.noCache())

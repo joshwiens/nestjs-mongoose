@@ -1,9 +1,9 @@
 import { Component } from '@nestjs/common';
 
-import * as packageInfo from '../../../package.json';
+import * as packageInfo from '../../package.json';
 
 @Component()
-export class Environment {
+export class Environments {
   public static getEnv(): string {
     return process.env.NODE_ENV || 'development';
   }

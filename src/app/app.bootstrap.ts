@@ -4,8 +4,8 @@ import * as express from 'express';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { MongooseService } from './../core/mongoose/mongoose.service';
-import { MongooseConfig } from './../core/mongoose/mongoose.confg';
+import { MongooseService } from './../shared/mongoose/mongoose.service';
+import { MongooseConfig } from './../shared/mongoose/mongoose.confg';
 
 @Component()
 export class AppBootstrap {

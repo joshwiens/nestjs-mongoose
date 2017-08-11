@@ -4,7 +4,7 @@ import * as https from 'https';
 
 import { AppComponent } from './app/app.component';
 import { AppModule } from './app/app.module';
-import { Environment } from './core/config/environment.component';
+import { Environments } from './shared/environments';
 
 const logger = new Logger('HttpsServer');
 const appInstance = new AppComponent();
@@ -27,8 +27,8 @@ httpsInstance.on('listening', () => {
   logger.log(`Nest Server ready and running on ${app.get('host')}:${app.get('port')}${app.get('prefix')}`);
   logger.log(``);
   logger.log(`-------------------------------------------------------`);
-  logger.log(`Environment  : ${Environment.getEnv()}`);
-  logger.log(`Version      : ${Environment.getPackageInfo().version}`);
+  logger.log(`Environment  : ${Environments.getEnv()}`);
+  logger.log(`Version      : ${Environments.getPackageInfo().version}`);
   logger.log(``);
   logger.log(`-------------------------------------------------------`);
   logger.log(``);
