@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/nest-typescript-starter
     docker:
-      - image: easymetrics/circleci-gcp-node8
+      - image: d3viant0ne/circleci-gcp-node8
     branches:
       only:
         - master
