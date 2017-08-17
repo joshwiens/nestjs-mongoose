@@ -1,28 +1,33 @@
 import { Component } from '@nestjs/common';
 import { Logger } from '@nestjs/common';
-
 import * as mongoose from 'mongoose';
 
-export type MongooseClient = mongoose.Mongoose;
+import { MongooseConfig } from './mongoose.confg';
 
 @Component()
 export class MongooseService {
   private readonly logger = new Logger(MongooseService.name);
 
-  public getMongooseConnection(connectionString) {
-    return new Promise<MongooseClient>((resolve, reject) => {
-      const connString = connectionString;
-      mongoose.connect(connString, { useMongoClient: true });
-      const db = mongoose.connection;
+  private instance: mongoose.Connection;
 
-      db.on('error', (e: Error) => {
-        this.logger.error('Db conenction error:' + e);
-        reject(e);
-      });
-      db.once('open', () => {
-        this.logger.log('Successful MongoDB Connection!');
-        resolve(mongoose);
-      });
-    });
+  constructor() {
+    (mongoose as any).Promise = global.Promise;
+  }
+
+  get connection() {
+    if (this.instance) {
+      return this.instance;
+    } else {
+      mongoose.connect(this.setConfig(), { useMongoClient: true });
+      this.instance = mongoose.connection;
+      this.logger.log('MongoDB Connection Established');
+      return this.instance;
+    }
+  }
+
+  private setConfig() {
+    const mongooseConfig: MongooseConfig = new MongooseConfig();
+
+    return mongooseConfig.configure();
   }
 }
