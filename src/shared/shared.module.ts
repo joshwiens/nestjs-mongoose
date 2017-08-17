@@ -1,5 +1,6 @@
 import { Module, Shared } from '@nestjs/common';
 
+import { DatabaseExceptionFilter } from './exceptions';
 import { Environments } from './environments';
 import { MongooseService } from './mongoose/mongoose.service';
 
@@ -7,7 +8,15 @@ import { MongooseService } from './mongoose/mongoose.service';
 @Module({
   modules: [],
   controllers: [],
-  components: [Environments, MongooseService],
-  exports: [Environments, MongooseService],
+  components: [
+    DatabaseExceptionFilter,
+    Environments,
+    MongooseService,
+  ],
+  exports: [
+    DatabaseExceptionFilter,
+    Environments,
+    MongooseService,
+  ],
 })
 export class SharedModule {}
