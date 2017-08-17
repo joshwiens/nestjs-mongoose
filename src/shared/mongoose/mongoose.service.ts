@@ -1,5 +1,4 @@
-import { Component } from '@nestjs/common';
-import { Logger } from '@nestjs/common';
+import { Component, Logger } from '@nestjs/common';
 import * as mongoose from 'mongoose';
 
 import { MongooseConfig } from './mongoose.confg';
@@ -20,7 +19,12 @@ export class MongooseService {
     } else {
       mongoose.connect(this.setConfig(), { useMongoClient: true });
       this.instance = mongoose.connection;
-      this.logger.log('MongoDB Connection Established');
+      this.instance.on('error', (e: Error) => {
+        this.logger.error('MongoDB conenction error:' + e);
+      });
+      this.instance.once('open', () => {
+        this.logger.log('Successful MongoDB Connection!');
+      });
       return this.instance;
     }
   }
