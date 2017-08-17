@@ -10,7 +10,6 @@ interface DatabaseErrorMessage {
 export class DatabaseExceptionFilter implements ExceptionFilter {
   private logger = new Logger(DatabaseExceptionFilter.name);
   private readonly duplicateKey = 11000;
-  private readonly validationError = 'ValidationError';
 
   public catch(exception, response) {
     this.logErrorMessage(exception);
@@ -23,20 +22,11 @@ export class DatabaseExceptionFilter implements ExceptionFilter {
       errorMessage = this.mongodError(exception);
     }
 
-    if (exception.name === this.validationError) {
+    if (exception.name === 'ValidationError') {
       errorMessage = this.formatMongooseError(exception);
     }
 
     response.status(errorMessage.status).json({ message: errorMessage.message });
-  }
-
-  private logErrorMessage(exception) {
-    let errorMessage = '';
-    Reflect.ownKeys(exception).forEach(k => {
-      errorMessage += `${k}: ${exception[k]}/n`;
-    });
-
-    this.logger.log(errorMessage);
   }
 
   private formatMongooseError(exception) {
@@ -67,4 +57,14 @@ export class DatabaseExceptionFilter implements ExceptionFilter {
 
     return errorMessage;
   }
+
+  private logErrorMessage(exception) {
+    let errorMessage = '';
+    Reflect.ownKeys(exception).forEach(k => {
+      errorMessage += `${k}: ${exception[k]}/n`;
+    });
+
+    this.logger.log(errorMessage);
+  }
+
 }
