@@ -14,8 +14,8 @@ export class HerosService {
     return await this.repository.findById(id);
   }
 
-  public async findByName(name: string): Promise<Hero[]> {
-    return await this.repository.findByName(name);
+  public async findBySomething(something: string): Promise<Hero[]> {
+    return await this.repository.findBySomething(something);
   }
 
   public async create(name: Hero) {
