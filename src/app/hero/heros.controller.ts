@@ -31,6 +31,18 @@ export class HerosController {
     res.status(HttpStatus.OK).json(hero);
   }
 
+  @Get('/name/:name')
+  public async getByName(@Res() res: Response, @Param('name') heroName: string) {
+    const heros = await this.herosService.findByName(heroName);
+    res.status(HttpStatus.OK).json(heros);
+  }
+
+  @Get('/alignment/:alignment')
+  public async getByAlignment(@Res() res: Response, @Param('alignment') heroAlignment: string) {
+    const heros = await this.herosService.findByAlignment(heroAlignment);
+    res.status(HttpStatus.OK).json(heros);
+  }
+
   @Post()
   public async create(@Res() res: Response, @Body() hero: Hero) {
     const newHero = await this.herosService.create(hero);
