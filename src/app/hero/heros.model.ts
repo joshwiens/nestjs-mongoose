@@ -7,6 +7,7 @@ import { MongooseService } from './../../shared/mongoose/mongoose.service';
 export interface Hero extends Document {
   id?: string;
   name: string;
+  alignment: string;
 }
 
 export interface HeroModel extends Model<Hero> {
@@ -37,7 +38,8 @@ export class HerosModel {
 
   private verifySchema() {
     this.schema = new Schema({
-      name: { type: String, required: 'Field {PATH} is required' },
+      name: { type: String, required: 'Name field is requied' },
+      alignment: { type: String, index: true },
     });
   }
 
