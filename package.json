@@ -53,6 +53,7 @@
     "codeclimate-test-reporter": "^0.5.0",
     "cross-env": "^5.0.4",
     "jest": "^20.0.4",
+    "mockgoose": "^7.3.3",
     "nodemon": "^1.11.0",
     "nsp": "^2.7.0",
     "rimraf": "^2.6.1",
