@@ -11,7 +11,8 @@ export interface Hero extends Document {
 }
 
 export interface HeroModel extends Model<Hero> {
-  findBySomething(something: string): DocumentQuery<Hero[], Hero>;
+  findByName(name: string): DocumentQuery<Hero[], Hero>;
+  findByAlignment(alignment: string): DocumentQuery<Hero[], Hero>;
 }
 
 @Component()
@@ -22,7 +23,7 @@ export class HerosModel {
 
   constructor(private mongooseService: MongooseService) {
     this.verifySchema();
-    this.addSelectors();
+    this.addStatics();
     this.herosRepository();
   }
 
@@ -44,24 +45,30 @@ export class HerosModel {
   }
 
   /**
-   * Binds custom selectors to the schema
+   * Binds custom static methods to the schema
    *
    * @private
    * @memberof HerosModel
    */
-  private addSelectors() {
-    this.schema.static('findBySomething', this.findBySomething.bind(this));
+  private addStatics() {
+    this.schema.static('findByName', this.findByName.bind(this));
+    this.schema.static('findByAlignment', this.findByAlignment.bind(this));
   }
 
   /**
-   * Fake selector for demo purposes ( must be bound above )
+   * Fake static methods for demo purposes ( must be bound above )
    *
    * @private
-   * @param {string} something
+   * @param {string} name
    * @returns {DocumentQuery<Hero[], Hero>}
    * @memberof HerosModel
    */
-  private findBySomething(something: string): DocumentQuery<Hero[], Hero> {
-    return this.model.find({ someProp: something });
+  private findByName(name: string): DocumentQuery<Hero[], Hero> {
+    return this.model.find({ name: name });
   }
+
+  private findByAlignment(alignment: string): DocumentQuery<Hero[], Hero> {
+    return this.model.find({ alignment: alignment });
+  }
+
 }

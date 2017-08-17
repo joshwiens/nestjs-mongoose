@@ -14,8 +14,12 @@ export class HerosService {
     return await this.repository.findById(id);
   }
 
-  public async findBySomething(something: string): Promise<Hero[]> {
-    return await this.repository.findBySomething(something);
+  public async findByName(name: string): Promise<Hero[]> {
+    return await this.repository.findByName(name);
+  }
+
+  public async findByAlignment(alignment: string): Promise<Hero[]> {
+    return await this.repository.findByAlignment(alignment);
   }
 
   public async create(name: Hero) {
