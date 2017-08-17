@@ -4,10 +4,13 @@ import * as chalk from 'chalk';
 
 @Middleware()
 export class RestLoggerMiddleware implements NestMiddleware {
-  private logger = new Logger(RestLoggerMiddleware.name);
+  private logger = new Logger('Request');
   public resolve() {
     return (req: Request, res: Response, next: NextFunction) => {
-      this.logger.log(`[${chalk.white(req.method)}] ${req.url} - ${chalk.blue(res.statusCode.toString())}`);
+      this.logger.log(
+        `[${chalk.white(req.method)}] ${chalk.cyan(res.statusCode.toString())} ` +
+        `${chalk.white('|')} ${chalk.cyan(req.httpVersion)} ${chalk.white('|')} ${chalk.cyan(req.ip)} ` +
+        `[${chalk.white('route:', req.path)}]`);
       next();
     };
   }
