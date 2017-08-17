@@ -4,9 +4,6 @@ import * as express from 'express';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { MongooseService } from './../shared/mongoose/mongoose.service';
-import { MongooseConfig } from './../shared/mongoose/mongoose.confg';
-
 @Component()
 export class AppBootstrap {
   public expressAppDefinition(app: express.Application): express.Application {
@@ -17,12 +14,6 @@ export class AppBootstrap {
     app.set('cert', fs.readFileSync(path.resolve(`${process.env.TLS_CERT_PATH}`)));
     app.set('ca', fs.readFileSync(path.resolve(`${process.env.TLS_CA_PATH}`)));
     return app;
-  }
-
-  public async setupDataSources() {
-    const mongooseConfig: MongooseConfig = new MongooseConfig();
-    const mongooseInstance: MongooseService = new MongooseService();
-    return await mongooseInstance.getMongooseConnection(mongooseConfig.configure());
   }
 
   public normalizedPort(port: string): number | string {

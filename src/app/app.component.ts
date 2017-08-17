@@ -23,7 +23,6 @@ export class AppComponent {
   }
 
   public bootstrap() {
-    this.appBootstrap.setupDataSources();
     this.logger.log('Configuring Express Options');
     this.appBootstrap.expressAppDefinition(this.express);
     this.appConfig.configure(this.express);
