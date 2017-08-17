@@ -11,6 +11,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es6",
+    "lib": [
+      "es6",
+      "es2016.array.include"
+    ],
     "sourceMap": true,
     "allowJs": true,
     "pretty": true,
