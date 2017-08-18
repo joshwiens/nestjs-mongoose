@@ -49,6 +49,7 @@
     "@types/compression": "0.0.33",
     "@types/cors": "^2.8.1",
     "@types/dotenv": "^4.0.0",
+    "@types/express-jwt": "0.0.36",
     "@types/helmet": "0.0.36",
     "@types/jest": "^20.0.2",
     "@types/mongoose": "^4.7.19",
