@@ -5,7 +5,7 @@ import * as https from 'https';
 import { AppComponent } from './app/app.component';
 import { AppModule } from './app/app.module';
 import { Environments } from './shared/environments';
-import { DatabaseExceptionFilter } from './shared/exceptions';
+import { DatabaseExceptionFilter, AuthExceptionFilter } from './shared/exceptions';
 
 
 const logger = new Logger('HttpsServer');
@@ -14,6 +14,7 @@ const app = appInstance.bootstrap();
 
 const server = NestFactory.create(AppModule, app);
 server.setGlobalPrefix(app.get('prefix'));
+server.useGlobalFilters(new AuthExceptionFilter());
 server.useGlobalFilters(new DatabaseExceptionFilter());
 server.init();
 

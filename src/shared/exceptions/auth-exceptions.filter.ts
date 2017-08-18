@@ -1,5 +1,6 @@
 import { Catch, ExceptionFilter, HttpStatus, Logger } from '@nestjs/common';
 import { JsonWebTokenError, NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
+import { UnauthorizedError } from 'express-jwt';
 
 interface AuthErrorMessage {
   message: string;
@@ -19,7 +20,7 @@ export class AuthExceptionFilter implements ExceptionFilter {
       status: HttpStatus.UNAUTHORIZED,
     };
 
-    if (exception instanceof JsonWebTokenError || TokenExpiredError || NotBeforeError) {
+    if (exception instanceof JsonWebTokenError || TokenExpiredError || NotBeforeError || UnauthorizedError) {
       errorMessage = this.jwtParseError(exception);
     }
 
