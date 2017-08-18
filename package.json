@@ -18,7 +18,7 @@
     "test:verbose": "npm run test -- --verbose",
     "test:coverage": "npm run clean:coverage && npm run test -- --coverage",
     "report-codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
-    "lint": "tslint --type-check --project tsconfig.json -c ./tslint.json 'src/**/*.ts'  --exclude 'src/**/*.d.ts'",
+    "lint": "tslint --type-check --project tsconfig.json -c ./tslint.json 'src/**/*.ts'  --exclude 'src/**/*.d.ts' --exclude 'src/**/*.spec.ts'",
     "certs": "bash ./.ssl/generateLocalCerts.sh 'localhost'",
     "security": "nsp check",
     "transpile": "tsc"
@@ -68,10 +68,15 @@
     "typescript": "^2.4.2"
   },
   "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.spec.json"
+      }
+    },
     "transform": {
       ".(ts)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "(/test/.*|\\.(test|spec))\\.(ts|js)$",
+    "testRegex": "(/src/.*\\.spec)\\.ts",
     "moduleFileExtensions": [
       "ts",
       "js",

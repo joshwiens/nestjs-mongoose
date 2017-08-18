@@ -1,4 +1,5 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
     "module": "commonjs",
     "declaration": false,
@@ -11,13 +12,14 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es6",
-    "lib": ["es6", "es2016.array.include"],
+    "lib": [
+      "es6",
+      "es2016.array.include"
+    ],
     "sourceMap": true,
     "allowJs": true,
-    "pretty": true,
-    "outDir": "./dist"
+    "pretty": true
   },
-  "typeRoots": ["node_modules/@types", "src/core/types/*"],
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "files": ["setupJest.ts"],
+  "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

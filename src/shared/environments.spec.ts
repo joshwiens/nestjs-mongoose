@@ -1,4 +1,4 @@
-import { Environments } from '../src/shared/environments';
+import { Environments } from './environments';
 
 describe('Environment', () => {
   test('getName() should return the test env', () => {

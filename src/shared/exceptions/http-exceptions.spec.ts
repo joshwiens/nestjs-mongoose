@@ -8,7 +8,7 @@ import {
   GoneException,
   UnsupportedMediaException,
   TooManyRequestsException,
-} from '../src/shared/exceptions';
+} from '../../shared/exceptions';
 
 describe('HTTP Exceptions', () => {
   test('BAD_REQUEST: Should have the correct properties', () => {
