@@ -22,8 +22,8 @@ export class HerosService {
     return await this.repository.findByAlignment(alignment);
   }
 
-  public async create(name: Hero) {
-    const newHero = await this.repository.create(name);
+  public async create(hero: Hero) {
+    const newHero = await this.repository.create(hero);
     return newHero;
   }
 
