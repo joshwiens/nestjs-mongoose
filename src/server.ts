@@ -12,11 +12,15 @@ const logger = new Logger('HttpsServer');
 const appInstance = new AppComponent();
 const app = appInstance.bootstrap();
 
-const server = NestFactory.create(AppModule, app);
-server.setGlobalPrefix(app.get('prefix'));
-server.useGlobalFilters(new AuthExceptionFilter());
-server.useGlobalFilters(new DatabaseExceptionFilter());
-server.init();
+async function bootstrap() {
+  const server = await NestFactory.create(AppModule, app);
+  server.setGlobalPrefix(app.get('prefix'));
+  server.useGlobalFilters(new AuthExceptionFilter());
+  server.useGlobalFilters(new DatabaseExceptionFilter());
+  server.init();
+}
+
+bootstrap();
 
 const options = {
   key: app.get('key'),

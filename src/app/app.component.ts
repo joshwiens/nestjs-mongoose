@@ -4,6 +4,7 @@ import { Component } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 import * as express from 'express';
 
+import { Environments } from '../shared/environments';
 import { AppBootstrap } from './app.bootstrap';
 import { AppConfiguration } from './app.config';
 
@@ -19,7 +20,7 @@ export class AppComponent {
   private appConfig = new AppConfiguration();
 
   constructor() {
-    dotenv.config();
+    Environments.isDev() ? dotenv.config() : null; // tslint:disable-line
   }
 
   public bootstrap() {

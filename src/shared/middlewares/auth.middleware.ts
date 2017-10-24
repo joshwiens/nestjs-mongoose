@@ -15,7 +15,7 @@ export class AuthMiddleware implements NestMiddleware {
     });
     return jwt({
       secret: secret,
-      audience: process.env.AUTH_AUDIENCE,
+      aud: process.env.AUTH_AUDIENCE,
       issuer: process.env.AUTH_ISSUER,
       algorithms: ['RS256'],
     });

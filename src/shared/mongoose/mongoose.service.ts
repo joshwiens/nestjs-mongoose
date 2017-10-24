@@ -1,6 +1,8 @@
 import { Component, Logger } from '@nestjs/common';
 import * as mongoose from 'mongoose';
 
+import { Environments } from '../environments';
+
 import { MongooseConfig } from './mongoose.confg';
 
 @Component()
@@ -14,6 +16,7 @@ export class MongooseService {
   }
 
   get connection() {
+    if (Environments.isTest()) { return this.instance = mongoose.connection; };
     if (this.instance) {
       return this.instance;
     } else {

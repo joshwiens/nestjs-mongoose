@@ -29,6 +29,6 @@ COPY ./.env.example /var/www/app/current/.env
 #ENV INSTANCE_NAME "<configure instance name>"
 
 #Expose the ports ( Nest http2/s, socket.io, keymetrics )
-EXPOSE 4433 3001 43554
+EXPOSE 4433 43554 80
 
 CMD ["pm2-docker", "start", "--auto-exit", "--env", "production", "process.yml"]
