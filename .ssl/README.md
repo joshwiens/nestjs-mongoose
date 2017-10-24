@@ -2,9 +2,8 @@
 
 #### Generating certificates
 
-`bash generateLocalCerts 'hostNameInQuotes'`
+- Change localhostnames in `selfsigned.js`
 
-> Adapted from https://git.daplie.com/Daplie/nodejs-self-signed-certificate-example
+- execute `node selfsigned.js`
 
-
-
+- Accept certificate in keychain
