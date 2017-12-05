@@ -1,6 +1,6 @@
 // tslint:disable max-line-length
 import { Component } from '@nestjs/common';
-import { Logger } from '@nestjs/common';
+import { Logger } from '@nestjs/common'
 
 @Component()
 export class MongooseConfig {

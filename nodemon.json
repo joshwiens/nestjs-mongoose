@@ -4,6 +4,6 @@
       "ts": "ts-node"
   },
   "events": {
-      "start": "tslint --type-check --project tsconfig.json -c ./tslint.json 'src/**/*.ts'  --exclude 'src/**/*.d.ts' --exclude 'src/**/*.spec.ts'"
+      "start": "tslint --project tsconfig.json -c ./tslint.json 'src/**/*.ts'  --exclude 'src/**/*.d.ts' --exclude 'src/**/*.spec.ts'"
   }
 }

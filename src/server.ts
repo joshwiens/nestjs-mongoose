@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { Transport } from '@nestjs/microservices';
 import * as https from 'https';
 
 import { AppComponent } from './app/app.component';
@@ -14,10 +15,15 @@ const app = appInstance.bootstrap();
 
 async function bootstrap() {
   const server = await NestFactory.create(AppModule, app);
+  server.connectMicroservice({
+    transport: Transport.REDIS,
+    url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+  });
   server.setGlobalPrefix(app.get('prefix'));
   server.useGlobalFilters(new AuthExceptionFilter());
   server.useGlobalFilters(new DatabaseExceptionFilter());
   server.init();
+  await server.startAllMicroservicesAsync();
 }
 
 bootstrap();

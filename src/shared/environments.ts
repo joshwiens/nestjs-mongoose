@@ -24,6 +24,14 @@ export class Environments {
     return this.getEnv() === 'production';
   }
 
+  public static getRedisHost(): string {
+    return process.env.REDIS_HOST || 'localhost';
+  }
+
+  public static getRedisPort(): string {
+    return process.env.REDIS_HOST || '6379';
+  }
+
   public static isEnabled(bool: string): boolean {
     try {
       return bool.toLowerCase() === 'true';
